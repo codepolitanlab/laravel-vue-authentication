@@ -7,3 +7,11 @@ export const setToken = (state, token) => {
     }
     localStorage.setItem('access_token', token);
 }
+
+export const setAuthenticated = (state, trueOrFalse) => {
+    state.user.authenticated = trueOrFalse;
+}
+
+export const setUserData = (state, data) => {
+    state.user.data = data;
+}
