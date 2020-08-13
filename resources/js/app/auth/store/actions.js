@@ -49,7 +49,7 @@ export const fetchUser = ({commit}) => {
     axios.get("/api/user")
         .then((result) => {
             commit("setAuthenticated", true);
-            commit("setUserData", result.data.data);
+            commit("setUserData", result.data);
         }).catch((err) => {
             console.log(err.response.data);
         });

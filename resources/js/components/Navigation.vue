@@ -44,19 +44,18 @@
 
                     <ul class="navbar-nav ml-auto" v-if="user.authenticated">
                         <li class="nav-item dropdown">
-                            <a
+                            <router-link
                                 id="navbarDropdown"
                                 class="nav-link dropdown-toggle"
-                                href="#"
+                                :to="{ name: 'profile'}"
                                 role="button"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
                                 aria-expanded="false"
-                                v-pre
                             >
-                                Hakim
+                                {{ user.data.name }}
                                 <span class="caret"></span>
-                            </a>
+                            </router-link>
 
                             <div
                                 class="dropdown-menu dropdown-menu-right"

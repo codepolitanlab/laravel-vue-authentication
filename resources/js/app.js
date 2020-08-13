@@ -16,6 +16,8 @@ store.dispatch("auth/setToken").then(() => {
         store.dispatch("auth/removeToken");
         router.replace({ name: "login" });
     })
+}).catch(() => {
+    store.dispatch("auth/removeToken");
 });
 
 /**
