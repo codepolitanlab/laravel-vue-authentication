@@ -5,8 +5,9 @@ import beforeEach from "./beforeEach";
 import auth from "../app/auth/router";
 import home from "../app/home/router";
 import dashboard from "../app/dashboard/router";
+import errors from "../app/errors/router";
 
-const routes = [...auth, ...home, ...dashboard];
+const routes = [...auth, ...home, ...dashboard, ...errors];
 
 console.log(routes);
 
