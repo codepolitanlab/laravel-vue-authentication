@@ -44,10 +44,9 @@
 
                     <ul class="navbar-nav ml-auto" v-if="user.authenticated">
                         <li class="nav-item dropdown">
-                            <router-link
+                            <a
                                 id="navbarDropdown"
                                 class="nav-link dropdown-toggle"
-                                :to="{ name: 'profile'}"
                                 role="button"
                                 data-toggle="dropdown"
                                 aria-haspopup="true"
@@ -55,13 +54,14 @@
                             >
                                 {{ user.data.name }}
                                 <span class="caret"></span>
-                            </router-link>
+                            </a>
 
                             <div
                                 class="dropdown-menu dropdown-menu-right"
                                 aria-labelledby="navbarDropdown"
                             >
-                                <a class="dropdown-item" href="#">Logout</a>
+                                <router-link :to="{ name: 'profile' }">Profile</router-link>
+                                <a class="dropdown-item" href="#" @click.prevent="signout">Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -72,13 +72,23 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
     computed: {
         ...mapGetters({
             user: "auth/user"
         })
+    },
+    methods: {
+        ...mapActions({
+            logout: "auth/logout"
+        }),
+        signout() {
+            this.logout().then(() => {
+                this.$router.replace({ name: "home" })
+            });
+        }
     }
 }
 </script>
