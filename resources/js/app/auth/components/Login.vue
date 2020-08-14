@@ -79,6 +79,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import { isEmpty } from "lodash";
 
 export default {
     data() {
@@ -101,7 +102,16 @@ export default {
                 },
                 context: this
             }).then((result) => {
-                this.$router.replace({ name: "home" });
+                const routeName = localStorage.getItem("intended");
+
+                if (isEmpty(routeName)) {
+                    this.$router.replace({ name: "home" });
+                    return;
+                }
+
+                this.$router.replace({ name: routeName });
+            }).catch(() => {
+                console.log('error');
             });
         }
     }
